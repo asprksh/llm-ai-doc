@@ -283,7 +283,7 @@ Answer:
     # ========================================================
 
     response = client.models.generate_content(
-        model = genai.GenerativeModel("gemini-2.5-pro"),
+        model = "gemini-2.5-pro",
         contents=prompt
     )
 
