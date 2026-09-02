@@ -283,7 +283,7 @@ Answer:
     # ========================================================
 
     response = client.models.generate_content(
-        model = "gemma-4-31b-it",
+        model = "gemini-embedding-2",
         contents=prompt
     )
 
