@@ -377,16 +377,8 @@ if uploaded_file is not None:
             #st.subheader("Retrieved PDF Chunks")
 
 
-            for i, (
-                chunk,
-                distance
-            ) in enumerate(
-                zip(
-                    retrieved_chunks,
-                    distances
-                )
-            ):
-
+            for i, (chunk,distance) in enumerate(zip(retrieved_chunks,distances)):
+                
                 with st.expander(f"Chunk {i + 1} | Distance: {distance:.4f}"):
 
                     #st.write(chunk)
