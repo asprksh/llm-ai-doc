@@ -283,7 +283,7 @@ Answer:
     # ========================================================
 
     response = client.models.generate_content(
-        model = "gemini-3.6-flash",
+        model = "gemma-4-31b-it",
         contents=prompt
     )
 
