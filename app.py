@@ -394,7 +394,6 @@ if uploaded_file is not None:
                     #st.write(chunk)
 
         else:
-
             st.info(
                 "No relevant PDF chunks were found."
             )
