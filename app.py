@@ -283,7 +283,7 @@ Answer:
     # ========================================================
 
     response = client.models.generate_content(
-        model = "gemini-embedding-2",
+        model = "gemini-3.7-flash",
         contents=prompt
     )
 
