@@ -387,9 +387,7 @@ if uploaded_file is not None:
                 )
             ):
 
-                with st.expander(
-                    f"Chunk {i + 1} | Distance: {distance:.4f}"
-                ):
+                with st.expander(f"Chunk {i + 1} | Distance: {distance:.4f}"):
 
                     #st.write(chunk)
 
