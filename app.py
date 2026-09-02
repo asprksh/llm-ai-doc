@@ -372,7 +372,7 @@ if uploaded_file is not None:
         # RETRIEVED CHUNKS
         # ====================================================
 
-        if retrieved_chunks:
+        '''if retrieved_chunks:
 
             #st.subheader("Retrieved PDF Chunks")
 
@@ -384,6 +384,10 @@ if uploaded_file is not None:
                     st.write(chunk)
 
         else:
+            st.info(
+                "No relevant PDF chunks were found."
+            )'''
+        if not retrieved_chunks:
             st.info(
                 "No relevant PDF chunks were found."
             )
