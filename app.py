@@ -330,10 +330,7 @@ if uploaded_file is not None:
         )
 
 
-    st.success(
-        f"PDF processed successfully! "
-        f"{len(chunks)} chunks created."
-    )
+    st.success(f"PDF processed successfully! ")
 
 
     # ========================================================
@@ -372,21 +369,20 @@ if uploaded_file is not None:
         # RETRIEVED CHUNKS
         # ====================================================
 
-        '''if retrieved_chunks:
+        #if retrieved_chunks:
 
             #st.subheader("Retrieved PDF Chunks")
 
 
-            for i, (chunk,distance) in enumerate(zip(retrieved_chunks,distances)):
+         #   for i, (chunk,distance) in enumerate(zip(retrieved_chunks,distances)):
                 
-                with st.expander(f"Chunk {i + 1} | Distance: {distance:.4f}"):
+          #      with st.expander(f"Chunk {i + 1} | Distance: {distance:.4f}"):
 
-                    st.write(chunk)
+           #         st.write(chunk)
 
-        else:
-            st.info(
-                "No relevant PDF chunks were found."
-            )'''
+        #else:
+         #   st.info("No relevant PDF chunks were found.")
+        
         if not retrieved_chunks:
             st.info(
                 "No relevant PDF chunks were found."
