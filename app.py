@@ -372,7 +372,7 @@ if uploaded_file is not None:
         # RETRIEVED CHUNKS
         # ====================================================
 
-        '''if retrieved_chunks:
+        if retrieved_chunks:
 
             st.subheader(
                 "🔎 Retrieved PDF Chunks"
@@ -393,7 +393,7 @@ if uploaded_file is not None:
                     f"Chunk {i + 1} | Distance: {distance:.4f}"
                 ):
 
-                    st.write(chunk)'''
+                    st.write(chunk)
 
         else:
 
