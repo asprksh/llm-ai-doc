@@ -17,7 +17,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("Assitant")
+st.title("Assistant")
 st.write("Upload a PDF and ask questions from its content.")
 
 
