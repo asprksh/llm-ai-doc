@@ -12,12 +12,12 @@ from google import genai
 # ============================================================
 
 st.set_page_config(
-    page_title="PDF RAG Chatbot",
+    page_title="Chatbot",
     page_icon="📚",
     layout="wide"
 )
 
-st.title("📚 PDF RAG Chatbot")
+st.title("Assitant")
 st.write("Upload a PDF and ask questions from its content.")
 
 
