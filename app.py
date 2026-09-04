@@ -258,7 +258,7 @@ if uploaded_file is not None:
         )
 
 
-    st.success(f"PDF processed successfully ")
+    #st.success(f"PDF processed successfully ")
     
     question = st.text_input(
         "Ask a question about the PDF:"
@@ -281,22 +281,7 @@ if uploaded_file is not None:
         st.subheader("Answer")
 
         st.write(answer)
-    
-
-        #if retrieved_chunks:
-
-            #st.subheader("Retrieved PDF Chunks")
-
-
-         #   for i, (chunk,distance) in enumerate(zip(retrieved_chunks,distances)):
                 
-          #      with st.expander(f"Chunk {i + 1} | Distance: {distance:.4f}"):
-
-           #         st.write(chunk)
-
-        #else:
-         #   st.info("No relevant PDF chunks were found.")
-        
         if not retrieved_chunks:
             st.info(
                 "No relevant PDF chunks were found."
