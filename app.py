@@ -6,11 +6,6 @@ import numpy as np
 import re
 from google import genai
 
-
-# ============================================================
-# PAGE CONFIG
-# ============================================================
-
 st.set_page_config(
     page_title="Chatbot",
     page_icon="📚",
@@ -21,18 +16,10 @@ st.title("Assistant")
 st.write("Upload a PDF and ask questions from its content.")
 
 
-# ============================================================
-# GEMMA CLIENT
-# ============================================================
-
 client = genai.Client(
     api_key=st.secrets["GEMINI_API_KEY"]
 )
 
-
-# ============================================================
-# LOAD EMBEDDING MODEL
-# ============================================================
 
 @st.cache_resource
 def load_embedding_model():
@@ -46,10 +33,6 @@ def load_embedding_model():
 
 embedding_model = load_embedding_model()
 
-
-# ============================================================
-# PDF PROCESSING
-# ============================================================
 
 def process_pdf(uploaded_file):
 
@@ -65,10 +48,6 @@ def process_pdf(uploaded_file):
 
             text += page_text + "\n"
 
-
-    # ========================================================
-    # SECTION-BASED CHUNKING
-    # ========================================================
 
     lines = text.splitlines()
 
@@ -130,10 +109,6 @@ def process_pdf(uploaded_file):
     return chunks
 
 
-# ============================================================
-# CREATE FAISS INDEX
-# ============================================================
-
 def create_faiss_index(chunks):
 
     embeddings = embedding_model.encode(
@@ -155,11 +130,6 @@ def create_faiss_index(chunks):
 
     return index
 
-
-# ============================================================
-# ASK QUESTION
-# ============================================================
-
 def answer_question(
     question,
     chunks,
@@ -172,37 +142,20 @@ def answer_question(
         len(chunks)
     )
 
-
-    # ========================================================
-    # QUESTION EMBEDDING
-    # ========================================================
-
     question_embedding = embedding_model.encode(
         [question],
         convert_to_numpy=True
     ).astype("float32")
 
-
-    # ========================================================
-    # FAISS SEARCH
-    # ========================================================
-
+    
     distances, indices = index.search(
         question_embedding,
         k
     )
-
-
-    # ========================================================
-    # THRESHOLD
-    # ========================================================
-
+   
     THRESHOLD = 1.5
 
     best_distance = distances[0][0]
-
-
-    # If question is not relevant
 
     if best_distance > THRESHOLD:
 
@@ -213,11 +166,7 @@ def answer_question(
             []
         )
 
-
-    # ========================================================
-    # RETRIEVE RELEVANT CHUNKS
-    # ========================================================
-
+    
     retrieved_chunks = []
 
     valid_distances = []
@@ -241,19 +190,11 @@ def answer_question(
                 distance
             )
 
-
-    # ========================================================
-    # CREATE CONTEXT
-    # ========================================================
-
+    
     context = "\n\n".join(
         retrieved_chunks
     )
 
-
-    # ========================================================
-    # GEMMA PROMPT
-    # ========================================================
 
     prompt = f"""
 You are a helpful RAG chatbot.
@@ -277,11 +218,6 @@ Question:
 Answer:
 """
 
-
-    # ========================================================
-    # GEMMA
-    # ========================================================
-
     response = client.models.generate_content(
         model = "gemma-4-31b-it",
         contents=prompt
@@ -295,19 +231,11 @@ Answer:
     )
 
 
-# ============================================================
-# PDF UPLOAD
-# ============================================================
-
 uploaded_file = st.file_uploader(
     "Upload your PDF",
     type=["pdf"]
 )
 
-
-# ============================================================
-# PROCESS PDF
-# ============================================================
 
 if uploaded_file is not None:
 
@@ -330,13 +258,8 @@ if uploaded_file is not None:
         )
 
 
-    st.success(f"PDF processed successfully! ")
-
-
-    # ========================================================
-    # QUESTION INPUT
-    # ========================================================
-
+    st.success(f"PDF processed successfully ")
+    
     question = st.text_input(
         "Ask a question about the PDF:"
     )
@@ -354,20 +277,11 @@ if uploaded_file is not None:
                 index,
                 k=3
             )
-
-
-        # ====================================================
-        # ANSWER
-        # ====================================================
-
-        st.subheader("🤖 Answer")
+        
+        st.subheader("Answer")
 
         st.write(answer)
-
-
-        # ====================================================
-        # RETRIEVED CHUNKS
-        # ====================================================
+    
 
         #if retrieved_chunks:
 
